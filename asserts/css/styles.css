@@ -24,6 +24,7 @@
     --navColorBg: var(--color-charcoal);
     --bgColor: var(--color-charcoal);
     --btnColor: var(--color-accent);
+    --btnColorHover: var(--color-highlight);
     --fontColor: var(--color-neutral);
     --aboutBg: var(--color-gray);
     --footerColor: var(--color-gray);
@@ -69,6 +70,11 @@ h3 {
     margin-bottom: 1rem;
 }
 
+h4 {
+    font-size: clamp(1rem, 1vw, 1.5rem);
+    margin-bottom: 1rem;
+}
+
 p {
     font-size: 1rem;
     line-height: 1.6;
@@ -81,7 +87,7 @@ li {
 
 a {
     text-decoration: none;
-    
+
 }
 
 small,
@@ -91,10 +97,68 @@ small,
     margin-bottom: 0.75rem;
 }
 
-img {
+/* img {
     max-inline-size: 100%;
     display: block;
     overflow: hidden;
+} */
+
+.breakupPoints::before {
+    content: "00 1:";
+    color: var(--btnColor);
+    padding-right: 1rem;
+}
+
+#chat {
+    background: var(--btnColor);
+    padding: .5rem .7rem;
+    font-weight: 600;
+    color: #F3F4F6;
+    transition: all .2s ease;
+}
+
+#chat:hover {
+    color: var(--fontColor);
+    background: var(--btnColorHover);
+}
+
+.btn {
+    padding: 13px 17px;
+    border: none;
+    background: transparent;
+
+}
+
+.btn-primary {
+    background: var(--btnColor);
+    color: var(--color-neutral);
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.btn-secondary {
+    border: 1px solid var(--color-gray);
+    color: var(--color-neutral);
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.btn-primary:hover {
+    background: var(--btnColorHover);
+    color: var(--fontColor);
+
+}
+
+.btn-secondary:hover {
+    /* border-color: var(--dark-text); */
+    border: 1px solid var(--btnColor);
+    transition: all .3s ease;
+}
+
+.fa-arrow-right:hover,
+.fa-up-right-from-square:hover {
+    padding-left: 5px;
+    transition: all .3s ease;
 }
 
 /***** Animates and hovers Effects *****/
@@ -105,15 +169,7 @@ img {
     border: 3pt solid #F3F4F6;
 } */
 
-.info {
-    border-left: 3pt solid var(--btnColor);
 
-}
-
-.info>* {
-    margin-left: 15px;
-    line-height: 1;
-}
 
 /***** End Animates and hovers Effects *****/
 
@@ -164,6 +220,7 @@ nav {
 .navBar li a {
     text-decoration: none;
     color: var(--dark-text);
+    transition: all .1s ease;
 }
 
 .navBar a:is(:hover) {
@@ -174,11 +231,25 @@ nav {
     display: none;
 }
 
+@media (max-width: 768px) {
+    .navBar {
+        display: none;
+    }
+
+    .toggleBtn {
+        display: block;
+        background: transparent;
+        color: #F3F4F6;
+        border: none;
+        padding: 1rem;
+        cursor: pointer;
+    }
+}
+
 header {
     padding: 100px 20px;
     min-height: 100vh;
     display: flex;
-    border: 1pt solid yellow;
     margin: 0 auto;
     align-items: center;
     justify-content: center;
@@ -194,32 +265,55 @@ header {
 }
 
 .hero img {
-    flex: 1 1 45%;
     max-width: 100%;
-
+    display: block;
+    overflow: hidden;
+    flex: 1;
 }
 
 .hero .heroContent {
-    flex: 1 1 45%;
-
+    flex: 1;
 }
 
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        margin: 0 auto;
+    }
+
+}
 
 /***** End Navigation Section *****/
 
 /***** Skills Section *****/
+.skills {
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .skills-content {
     color: #fff;
     border-radius: 8px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    margin: auto;
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); */
+    /* margin: auto; */
     gap: 2rem;
-    place-content: center;
+    /* place-content: center; */
+
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .skills-content {
     margin-bottom: 1rem;
+    max-width: 100%;
+}
+
+.skills-content span:is(:focus, :hover) {
+    transform: translateX(-5px);
 }
 
 .skill span,
@@ -262,7 +356,6 @@ span {
 .tag:is(:hover, :focus) {
     border: 1pt solid var(--btnColor);
     color: var(--color-neutral);
-
 }
 
 /***** End Section *****/
@@ -276,11 +369,10 @@ span {
 .grid-container {
     background: var(--aboutBg);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
     gap: 2rem;
     max-width: min(70rem, 100%);
     margin-inline: auto;
-
 }
 
 .card {
@@ -288,33 +380,55 @@ span {
 }
 
 .card img {
-    max-inline-size: 100%;
+    width: 100%;
 }
 
 .card-text {
-    padding: 1rem;
+    /* padding: 1rem; */
+    padding: 0 2rem 1rem 2rem;
+    margin-top: 1rem;
 
-}
-
-.card button {
-    border: 1pt solid var(--color-charcoal);
-    margin: .5rem;
 }
 
 .card-text h4 {
-    margin-top: 1rem;
+    margin: .5rem 0;
+    font-size: 16px;
+}
+
+.card-text .card-span {
+    margin-bottom: .5rem;
+    color: var(--btnColor);
+    font-weight: 600;
+    font-size: 1.3rem
+}
+
+.card-text p {
+    font-size: 14px;
+    color: var(--dark-text);
 }
 
 .btn-group button {
     padding: 6px 12px;
     font-size: 12px;
-    /* display: inline-block; */
     background: transparent;
     border: 1pt solid var(--color-gray);
     color: var(--color-main-text);
 }
 
+.btn-group button:is(:hover, :focus) {
+    border: 1pt solid var(--btnColor);
+    transition: all .2s ease;
+    transform: scale(1.02);
+    color: var(--color-neutral);
+
+}
+
 /***** End Service Section *****/
+.container {
+    max-inline-size: min(1200px, 100%);
+    margin-inline: auto;
+
+}
 
 
 section {
@@ -327,41 +441,121 @@ section {
     background: var(--aboutBg);
 }
 
-
-
-.container {
-
-    border: 1px solid yellow;
-    max-inline-size: min(1200px, 100%);
-    margin-inline: auto;
-
+.about {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
 }
 
-#about .about-content:nth-child(1) {
+@media (max-width: 768px) {
+    .about {
+        flex-direction: column;
+    }
+}
+
+.left {
     flex: 1;
 }
 
-#about .about-content:nth-child(2) {
+.right {
     flex: 2;
 }
 
 .about-info {
     display: flex;
-    justify-content: flex-start;
-    padding-block: 1rem;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+
 }
 
 .info {
-    padding: 0 .7rem;
+    border-left: 3pt solid var(--btnColor);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    line-height: 1;
+    padding: .5rem;
+    /* padding-top:1rem ; */
+
 }
+
+.info:hover{
+    background-color: var(--color-charcoal);
+    transform: scale(.95);
+}
+
 
 /***** End About Me *****/
 
+/***** Contact sections *****/
+
+.contact {
+    display: flex;
+    /* background-color: #1E3A8A; */
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .contact {
+        flex-direction: column;
+        max-width: 100%;
+        margin: auto;
+    }
+}
+
+.contact-content {
+    margin: 2rem 0;
+}
+
+.contact-label {
+    display: flex;
+    gap: 2rem;
+    padding: .75rem;
+
+
+}
+
+input,
+textarea {
+    background: var(--color-gray);
+    display: flex;
+    flex-direction: column;
+    width: min(100% - 100px);
+    justify-content: center;
+
+    color: var(--dark-text);
+    padding: 13px 20px;
+    border: none;
+    /* background: transparent; */
+
+}
+
+
+/***** End Contact sections *****/
 
 footer {
     background: var(--footerColor);
     color: var(--dark-text);
     padding: var(--cardPadding);
+}
+
+.footer-social {
+    display: flex;
+    margin-top: 2rem;
+    gap: 1.5rem;
+    color: var(--dark-text);
+}
+
+.footer-social li {
+    padding: 8px;
+    border: 1pt solid #999999;
+}
+
+.footer-social li:is(:hover, :focus) {
+    color: var(--btnColor);
+    border-color: var(--btnColor);
+    transition: all .3s ease;
 }
 
 /***** End Responsive Section *****/
